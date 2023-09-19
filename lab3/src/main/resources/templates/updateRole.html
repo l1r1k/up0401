@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение ролей</title>
+    <div th:insert="blocks/adminHeader" ></div>
+    <style>
+        body{
+            background-color: #ded1b7;
+        }
+    </style>
+</head>
+<body>
+<form method="post" th:object="${user}">
+    <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a th:text="${user.getFirstName_User()}">user</a>
+                </div>
+                <div class="col">
+                    <a th:text="${user.getSecondName_User()}">user</a>
+                </div>
+                <div class="col">
+                    <a th:text="${user.getLastName_User()}">user</a>
+                </div>
+                <div class="col">
+                    <a th:text="${user.getLogin_User()}">user</a>
+                </div>
+                <div class="col">
+                    <a th:text="${user.getPassword_User()}">user</a>
+                </div>
+                <div th:each="role : ${roles}">
+                    <input type="checkbox" th:id="${role}"
+                           th:name="${'roles[]'}" th:value="${role}"
+                           th:checked="${#lists.contains(user.roles, role)}">
+
+                    <label th:text="${role}"></label>
+                </div>
+                <div class="col">
+                    <button class="btn btn-success" type="submit">Изменить пользователя</button>
+                </div>
+            </div>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение пользователей</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <div th:if = "${role.equals('ADMIN')}" th:insert="blocks/adminHeader" ></div>
+    <div th:if = "${role.equals('USER')}"  th:insert="blocks/userHeader" ></div>
+    <style>
+        .update{
+            margin-top: 25px;
+            margin-left: 25px;
+            padding: .75rem 1.25rem;
+            border-radius: 10rem;
+            color: #fcfcfc;
+            background-color: #7ed02f;
+            font-size: 1rem;
+            letter-spacing: .15rem;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+        .updateDiv{
+            width: 600px;
+            margin-top: 45px;
+            margin-left: 45%;
+        }
+        body{
+            background-color: #ffe6c3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="updateDiv">
+    <form method="post"  th:object="${user}">
+        <label for="FirstName_User">Укажите фамилию: </label>
+        <br>
+        <input type="text" th:field="*{FirstName_User}" id="FirstName_User"/>
+        <span th:if="${#fields.hasErrors('FirstName_User')}" th:errors="*{FirstName_User}" ></span>
+        <br>
+        <label for="SecondName_User">Укажите имя: </label>
+        <br>
+        <input type="text" th:field="*{SecondName_User}" id="SecondName_User"/>
+        <span th:if="${#fields.hasErrors('SecondName_User')}" th:errors="*{SecondName_User}" ></span>
+        <br>
+        <label for="LastName_User">Укажите отчество: </label>
+        <br>
+        <input type="text" th:field="*{LastName_User}" id="LastName_User"/>
+        <span th:if="${#fields.hasErrors('LastName_User')}" th:errors="*{LastName_User}" ></span>
+        <br>
+        <label for="Login_User">Укажите логин: </label>
+        <br>
+        <input type="text" th:field="*{Login_User}" id="Login_User"/>
+        <span th:if="${#fields.hasErrors('Login_User')}" th:errors="*{Login_User}" ></span>
+        <br>
+        <label for="Password_User">Укажите пароль: </label>
+        <br>
+        <input type="text" th:field="*{Password_User}" id="Password_User"/>
+        <span th:if="${#fields.hasErrors('Password_User')}" th:errors="*{Password_User}" ></span>
+
+        <br/>
+        <input class="update" type="submit" value="Изменить!"/>
+    </form>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

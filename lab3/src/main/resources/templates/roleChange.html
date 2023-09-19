@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменения ролей</title>
+    <div th:insert="blocks/adminHeader" ></div>
+    <style>
+        body{
+            background-color: #ffe6c3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div th:each="user : ${users}">
+            <div class="row">
+                <div class="col">
+                    <a th:text="${user.getFirstName_User()}">user</a>
+                </div>
+                <div class="col">
+                    <a th:text="${user.getSecondName_User()}">user</a>
+                </div>
+                <div class="col">
+                    <a th:text="${user.getLastName_User()}">user</a>
+                </div>
+                <div class="col">
+                    <a th:text="${user.getLogin_User()}">user</a>
+                </div>
+                <div class="col">
+                    <a th:text="${user.getPassword_User()}">user</a>
+                </div>
+                <div th:each="role : ${roles}">
+                    <input type="checkbox" th:id="${role}"
+                           th:name="${'roles[]'}" th:value="${role}"
+                           th:checked="${#lists.contains(user.roles, role)}" disabled>
+
+                    <label th:text="${role}"></label>
+                </div>
+                <div class="col">
+                    <a class="btn btn-success" th:href="@{/employee/updaterole/{id}(id=${user.getID_User()})}">Изменить роль пользователя</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

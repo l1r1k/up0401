@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Регистрация</title>
+    <style>
+        body{
+            background: #73CCCCFC;
+        }
+        .centered {
+            position: fixed; /* or absolute */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #3ac9ce;
+            padding: 25px 50px 25px 50px;
+        }
+        .divAuth{
+            margin-bottom: 30px;
+            margin-left: 80px;
+            width: 20px;
+            height: 20px;
+        }
+        .incorrect{
+            text-align: center;
+            color: #f33c3c;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .inputs{
+            margin-bottom: 10px;
+        }
+        .btnAuth{
+            padding: .75rem 1.25rem;
+            border-radius: 10rem;
+            color: #fcfcfc;
+            background-color: #a4b728;
+            font-size: 1rem;
+            letter-spacing: .15rem;
+            position: absolute;
+            overflow: hidden;
+            text-decoration: none;
+            border: none;
+        }
+        .surname{
+            margin-left: 9px;
+        }
+        .name{
+            margin-left: 28px;
+        }
+        .login{
+            margin-left: 28px;
+        }
+        .password{
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="centered">
+    <div th:if="${message}" class="incorrect">
+        User with this login already exist
+    </div>
+    <form th:action="@{/regis}" method="post">
+        <div class="inputs"><label> Surname   : <input class="surname" type="text" name="FirstName_User"/> </label></div>
+        <div class="inputs"><label> Name      : <input class="name" type="text" name="SecondName_User"/> </label></div>
+        <div class="inputs"><label> Last name : <input type="text" name="LastName_User"/> </label></div>
+        <div class="inputs"><label> Login     : <input class="login" type="text" name="Login_User"/> </label></div>
+        <div class="inputs"><label> Password  : <input class="password" type="password" name="Password_User"/> </label></div>
+
+        <div class="divAuth"><input class="btnAuth" type="submit" value="Registration"/></div>
+    </form>
+</div>
+
+</body>
+</html>

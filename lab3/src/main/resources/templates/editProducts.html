@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение товаров</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <div th:if = "${role.equals('ADMIN')}" th:insert="blocks/adminHeader" ></div>
+    <div th:if = "${role.equals('EMPLOYEE')}"  th:insert="blocks/employeeHeader" ></div>
+    <style>
+        .update{
+            margin-top: 25px;
+            margin-left: 25px;
+            padding: .75rem 1.25rem;
+            border-radius: 10rem;
+            color: #fcfcfc;
+            background-color: #7ed02f;
+            font-size: 1rem;
+            letter-spacing: .15rem;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+        .updateDiv{
+            width: 600px;
+            margin-top: 45px;
+            margin-left: 45%;
+        }
+        body{
+            background-color: #ffe6c3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="updateDiv">
+    <form method="post" th:object="${product}">
+        <div class="col">
+            <label >Выберите марку: </label>
+        </div>
+        <br/>
+        <div class="col">
+            <select  name="mark">
+                <div th:each="element : ${marks}">
+                    <option th:value="${element.ID_Mark}" th:text="${element.Name_Mark}"></option>
+                </div>
+            </select>
+        </div>
+
+        <br/>
+        <div class="col">
+            <label >Выберите модель: </label>
+        </div>
+        <br/>
+        <div class="col">
+            <select  name="model">
+                <div th:each="element : ${models}">
+                    <option th:value="${element.ID_Model}" th:text="${element.Name_Model}"></option>
+                </div>
+            </select>
+        </div>
+        <br/>
+
+        <label for="Count_Product">Укажите количество: </label>
+        <br/>
+        <input type="text" th:field="*{Count_Product}" id="Count_Product"/>
+        <span th:if="${#fields.hasErrors('Count_Product')}" th:errors="*{Count_Product}" ></span>
+        <br/>
+        <label for="Cost_Product">Укажите цену: </label>
+        <br/>
+        <input type="text" th:field="*{Cost_Product}" id="Cost_Product"/>
+        <span th:if="${#fields.hasErrors('Cost_Product')}" th:errors="*{Cost_Product}" ></span>
+        <br/>
+        <label for="Article_Product">Укажите артикул: </label>
+        <br/>
+        <input type="text" th:field="*{Article_Product}" id="Article_Product"/>
+        <span th:if="${#fields.hasErrors('Article_Product')}" th:errors="*{Article_Product}" ></span>
+        <br/>
+        <div class="col">
+            <label >Выберите магазин: </label>
+        </div>
+        <br/>
+        <div class="col">
+            <select  name="shop">
+                <div th:each="element : ${shops}">
+                    <option th:value="${element.ID_Shop}" th:text="${element.Name_Shop}"></option>
+                </div>
+            </select>
+        </div>
+
+        <br/>
+        <input class="update" type="submit" value="Изменить!"/>
+    </form>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

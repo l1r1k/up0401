@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <title>Авторизация</title>
+  <style>
+    body{
+      background: #73CCCCFC;
+    }
+    .centered {
+      position: fixed; /* or absolute */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #3ac9ce;
+      padding: 25px 50px 65px 50px;
+    }
+  .divAuth{
+    margin-bottom: 30px;
+    margin-left: 120px;
+    width: 20px;
+    height: 20px;
+  }
+  .incorrect{
+    text-align: center;
+    color: #f33c3c;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .login{
+    margin-left: 23px;
+    margin-bottom: 10px;
+  }
+  .password{
+    margin-bottom: 10px;
+  }
+  .registration{
+    padding: .75rem 1.25rem;
+    border-radius: 10rem;
+    color: #fcfcfc;
+    background-color: #2880b7;
+    font-size: 1rem;
+    letter-spacing: .15rem;
+    position: absolute;
+    overflow: hidden;
+    text-decoration: none;
+    margin-left: 85px;
+  }
+  .btnAuth{
+    padding: .75rem 1.25rem;
+    border-radius: 10rem;
+    color: #fcfcfc;
+    background-color: #a4b728;
+    font-size: 1rem;
+    letter-spacing: .15rem;
+    position: absolute;
+    overflow: hidden;
+    text-decoration: none;
+    border: none;
+  }
+  </style>
+</head>
+<body>
+<div class="centered">
+  <div th:if="${param.error}" class="incorrect">
+    Login or password was incorrect
+  </div>
+  <form th:action="@{/login}" method="post">
+    <div class="login"><label> Login : <input type="text" name="username"/> </label></div>
+    <div class="password"><label> Password : <input type="password" name="password"/> </label></div>
+    <div class="divAuth"><input class="btnAuth" type="submit" value="Auth"/></div>
+  </form>
+  <a href="/regis" class="registration">Registration</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <div th:insert="blocks/userHeader" ></div>
+    <style>
+        #outerDiv{
+            margin-top: 45px;
+            margin-bottom: 20px;
+        }
+        #innerDiv{
+            width: 900px;
+            margin-left: auto;
+        }
+
+        .add{
+            margin-top: 10px;
+            margin-left: 25px;
+            padding: .75rem 1.25rem;
+            border-radius: 10rem;
+            color: #fcfcfc;
+            background-color: #7ed02f;
+            font-size: 1rem;
+            letter-spacing: .15rem;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            text-decoration: none;
+        }
+        .delete{
+            padding: .5rem 1.25rem;
+            border-radius: 10rem;
+            color: #fcfcfc;
+            background-color: #d52d2d;
+            font-size: 1rem;
+            letter-spacing: .15rem;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+        body{
+            background-color: #ffe6c3;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+<div id="outerDiv">
+    <div th:if="${!carts.isEmpty()}" class="container" >
+        <div class="row" th:each="cart : ${carts}" id="innerDiv">
+            <div class="col">
+                <div class="container">
+                    <div class="row" style="border: 1px solid white; border-radius: 1rem; background-color: white">
+                        <div class="col">
+                            <label>Название: <p th:text="${cart.getProduct().getMark().getName_Mark()} + ' ' + ${cart.getProduct().getModel().getName_Model()}" id="Name_Product"></p></label>
+                        </div>
+                        <div class="col">
+                            <label>Количество: <p th:text="${cart.getCount()}" id="Count_Product"></p> шт.</label>
+                        </div>
+                        <div class="col">
+                            <label>Стоимость: <p th:text="${cart.getProduct().getCost_Product() * cart.getCount()}" id="Cost_Product"></p>₽</label>
+                        </div>
+                        <div class="col">
+                            <label>Артикул: <p th:text="${cart.getProduct().getArticle_Product()}" id="Article_Product"></p></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <a class="delete" th:href="@{/user/delProductCart/{id}(id=${cart.getId()})}">Убрать</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:if="${carts.isEmpty()}">
+    <h2 style="margin-left: 450px; margin-bottom: 20px;">Корзина пока пуста!</h2>
+    <a style="margin-left: 513px;" class="add" href="/home">За покупками!</a>
+</div>
+
+<div th:if="${!carts.isEmpty()}">
+    <a class="add" href="/user/createOrder">Оформить заказ</a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

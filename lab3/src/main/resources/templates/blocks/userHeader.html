@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <style>
+    .redirects{
+      padding: .75rem 1.25rem;
+      border-radius: 10rem;
+      color: #fcfcfc;
+      background-color: #a4b728;
+      font-size: 1rem;
+      letter-spacing: .15rem;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+    }
+    .logout{
+      margin-top: -13px;
+      padding: .75rem 1.25rem;
+      border-radius: 10rem;
+      color: #fcfcfc;
+      background-color: #b72828;
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: .15rem;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      border: none;
+    }
+    header{
+      background-color: #e0d9be;
+      padding-top: 25px;
+      padding-bottom: 25px;
+      border-bottom: 2px solid black;
+    }
+    #row1{
+      margin-bottom: 15px;
+    }
+    #row2{
+      margin-bottom: 25px;
+    }
+  </style>
+
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="row" id="row1">
+      <div class="col">
+        <a class="redirects" href="/home">Главная</a>
+      </div>
+
+      <div class="col">
+        <a class="redirects" href="/user/cart">Корзина</a>
+      </div>
+
+
+      <div class="col">
+        <a class="redirects" href="/user/employee/userOrders">Заказы</a>
+      </div>
+
+      <div class="col">
+        <form th:action="@{/logout}" method="post">
+          <button type="submit" class="logout" >Выйти</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</header>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>

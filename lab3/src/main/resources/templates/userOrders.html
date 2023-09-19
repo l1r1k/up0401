@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказы</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <div th:insert="blocks/userHeader" ></div>
+    <style>
+        .delievered{
+            padding: .75rem 1.25rem;
+            border-radius: 10rem;
+            color: #fcfcfc;
+            background-color: #92cc2e;
+            font-size: 1rem;
+            letter-spacing: .15rem;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+        .notdelievered{
+            padding: .75rem 1.25rem;
+            border-radius: 10rem;
+            color: #fcfcfc;
+            background-color: #f1e325;
+            font-size: 1rem;
+            letter-spacing: .15rem;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+        body{
+            background-color: #ded1b7;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div th:each="order : ${orders}" style="border: 1px solid white; border-radius: 1rem; background-color: white; margin-bottom: 20px;padding: 10px 10px 10px 10px">
+        <div class="row">
+            <div class="col">
+                <p>Номер заказа: <p th:text="${order.getNumber_Order()}"></p>
+            </div>
+            <div class="col">
+                <p>Товар: <p th:text="${order.getProduct().getMark().getName_Mark() + ' ' + order.getProduct().getModel().getName_Model()}"></p>
+            </div>
+            <div class="col">
+                <p>Дата заказа: <p th:text="${order.getDate_Order()}"></p>
+            </div>
+            <div class="col">
+                <p class="delievered" th:if="${order.getStatus_Order().equals(true)}">Доставлен</p>
+                <p class="notdelievered" th:if="${order.getStatus_Order().equals(false)}">Доставляется</p>
+            </div>
+        </div>
+        <div th:if="${order.getStatus_Order().equals(true)}" class="row">
+            <p>Забрать в магазине: <p th:text="${order.getProduct().getShop().getName_Shop()}"></p>
+            <p>по адресу: <p th:text="${order.getProduct().getShop().getAddress_Shop()}"></p>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
